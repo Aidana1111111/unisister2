@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSister — Личный кабинет</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">UniSister 🌸 (<span id="roleTitle">Личный кабинет</span>)</div>
+    <div class="header-right">
+        <button id="themeToggle" class="theme-btn">🌙 Темная</button>
+        <select id="langSelect" class="lang-select">
+            <option value="ru">РУС</option>
+            <option value="kz">ҚАЗ</option>
+            <option value="en">ENG</option>
+        </select>
+        <button id="btnLogout" class="logout-btn">Выйти</button>
+    </div>
+</header>
+
+<main class="container profile-grid">
+    <div class="card">
+        <h2 id="editTitle">⚙️ Управление моим профилем</h2>
+        <form id="editForm">
+            <div class="form-group">
+                <label id="lblEditName">ФИО и Университет</label>
+                <input type="text" id="editName" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label id="lblEditBudget">Бюджет (₸)</label>
+                    <input type="number" id="editBudget" required>
+                </div>
+                <div class="form-group">
+                    <label id="lblVerifyStatus">Статус</label>
+                    <div id="verifyBadge" class="verified-badge">✅ Верифицировано</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Знак зодиака</label>
+                    <input type="text" id="editZodiac" readonly style="opacity: 0.8;">
+                </div>
+                <div class="form-group">
+                    <label>Режим дня</label>
+                    <input type="text" id="editSchedule" readonly style="opacity: 0.8;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="lblEditPassport">Ссылка на документ / Паспорт</label>
+                <input type="url" id="editPassport" required>
+            </div>
+
+            <div class="form-group">
+                <label id="labelWhy">Зачем вам совместное проживание?</label>
+                <input type="text" id="editWhy" required>
+            </div>
+
+            <button type="submit" id="btnSave">Сохранить изменения</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2 id="listTitle">👥 Каталог и Подбор сожительниц</h2>
+
+        <div class="filters-box">
+            <select id="filterZodiac" class="filter-select">
+                <option value="">✨ Все знаки зодиака</option>
+                <option value="Овен">Овен</option><option value="Телец">Телец</option><option value="Близнецы">Близнецы</option>
+                <option value="Рак">Рак</option><option value="Лев">Лев</option><option value="Дева">Дева</option>
+                <option value="Весы">Весы</option><option value="Скорпион">Скорпион</option><option value="Стрелец">Стрелец</option>
+                <option value="Козерог">Козерог</option><option value="Водолей">Водолей</option><option value="Рыбы">Рыбы</option>
+            </select>
+
+            <select id="filterSchedule" class="filter-select">
+                <option value="">⏰ Любой режим</option>
+                <option value="жаворонок">Жаворонок</option>
+                <option value="сова">Сова</option>
+            </select>
+        </div>
+
+        <div id="girlsList" class="girls-list"></div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

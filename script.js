@@ -49,8 +49,8 @@ const translations = {
         badge: "✅ Расталған",
         checkDoc: "Құжатты тексеру",
         goal: "Мақсаты",
-        optLark: "Жаворонок",
-        optOwl: "Сова",
+        optLark: "Бозторғай",
+        optOwl: "Жапалақ",
         themeDark: "🌙 Түнгі",
         themeLight: "☀️ Күндізгі",
         phName: "Әлия, ЕҰУ (2 курс)",
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 1. Регистрация (index.html)
+    // Регистрация (index.html)
     const regForm = document.getElementById('regForm');
     if (regForm) {
         regForm.onsubmit = (e) => {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 2. Личный кабинет (profile.html)
+    // Личный кабинет (profile.html)
     const editForm = document.getElementById('editForm');
     if (editForm) {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -147,17 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Заполняем поля данными текущего пользователя
         if (document.getElementById('editName')) document.getElementById('editName').value = currentUser.nameUni || '';
         if (document.getElementById('editBudget')) document.getElementById('editBudget').value = currentUser.budget || '';
         if (document.getElementById('editZodiac')) document.getElementById('editZodiac').value = currentUser.zodiac || '';
         if (document.getElementById('editSchedule')) document.getElementById('editSchedule').value = currentUser.schedule || '';
+        if (document.getElementById('editPassport')) document.getElementById('editPassport').value = currentUser.passportLink || '';
+        if (document.getElementById('editWhy')) document.getElementById('editWhy').value = currentUser.whyStay || '';
 
-        // Сохранение изменений в кабинете
         editForm.onsubmit = (e) => {
             e.preventDefault();
             currentUser.nameUni = document.getElementById('editName').value;
             currentUser.budget = document.getElementById('editBudget').value;
+            currentUser.passportLink = document.getElementById('editPassport').value;
+            currentUser.whyStay = document.getElementById('editWhy').value;
 
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
@@ -165,17 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
             allGirls = allGirls.map(g => g.email === currentUser.email ? currentUser : g);
             localStorage.setItem('allGirls', JSON.stringify(allGirls));
 
-            alert('Изменения успешно сохранены!');
+            alert('Изменения сохранены!');
             renderGirlsList();
         };
 
-        // КНОПКА ВЫХОДА (Исправлено)
         const logoutBtn = document.getElementById('btnLogout');
         if (logoutBtn) {
             logoutBtn.onclick = (e) => {
                 e.preventDefault();
-                localStorage.removeItem('currentUser'); // Удаляем сессию
-                window.location.href = 'index.html';  // Перенаправляем на вход
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
             };
         }
 
@@ -294,6 +295,7 @@ function applyLanguage(lang) {
     setElemText('lblEditName', t.name);
     setElemText('lblEditBudget', t.budget);
     setElemText('lblVerifyStatus', t.lblVerify);
+    setElemText('lblEditPassport', t.passport);
     setElemText('btnSave', t.btnSave);
     setElemText('btnLogout', t.btnLogout);
     setElemText('verifyBadge', t.badge);
